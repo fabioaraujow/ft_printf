@@ -1,0 +1,14 @@
+# Build artifacts
+*.o
+*.a
+
+# Executables
+a.out
+*.out
+test
+test_*
+
+# Editor / OS junk
+.DS_Store
+*.swp
+*~
