@@ -67,15 +67,3 @@ int	ft_putunsigned_pf(unsigned int n)
 	free(nbr);
 	return (size);
 }
-
-#include <unistd.h>
-#include <stdio.h>
-#include <limits.h>
-
-int	main(void)
-{
-	printf("\nReturn - %u\n", ft_putunsigned_pf(0));
-	printf("\nReturn - %u\n", ft_putunsigned_pf(42));
-	printf("\nReturn - %u\n", ft_putunsigned_pf(UINT_MAX));
-	return (0);
-}
