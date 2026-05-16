@@ -5,7 +5,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_printf(const char *, ...);
+int	ft_printf(const char *format, ...);
 int	ft_putchar_pf(int c);
 int	ft_putstr_pf(char *str);
 int	ft_putnbr_pf(int n);

@@ -3,7 +3,7 @@
 int	ft_putnbr_pf(int n)
 {
 	char	*nbr;
-	int	size;
+	int		size;
 
 	nbr = ft_itoa(n);
 	if (!nbr)
