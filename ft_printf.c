@@ -12,33 +12,35 @@
 
 #include "ft_printf.h"
 
-int	ft_check_dispatcher(const char *str, int i)
+int	ft_check_dispatcher(const char *str, int i, va_list ap)
 {
 	int	pos;
 
 	pos = i;
 	if (str[i + 1] == 'c')
 		return (ft_putchar_pf(va_arg(ap, int)));
-
 }
 
 int	ft_printf(const char *format, ...)
 {
-	va_list ap;
-	int	i;
+	va_list	ap;
+	int		i;
+	int		count;
 
 	i = 0;
+	count = 0;
 	va_start(ap, format);
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			ft_check_dispatcher(format, i);
+			count = count + ft_check_dispatcher(format, i, ap);
 			i++;
 		}
-		ft_putchar_pf(format[i]);
+		else
+			ft_putchar_pf(format[i]);
 		i++;
 	}
 	va_end(ap);
-	return (0);
+	return (count);
 }
