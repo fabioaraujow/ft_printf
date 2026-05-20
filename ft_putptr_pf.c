@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex_pf.c                                     :+:      :+:    :+:   */
+/*   ft_putptr_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fabde-ar <fabde-ar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/20 09:34:14 by fabde-ar          #+#    #+#             */
-/*   Updated: 2026/05/20 09:34:15 by fabde-ar         ###   ########.fr       */
+/*   Created: 2026/05/20 11:00:39 by fabde-ar          #+#    #+#             */
+/*   Updated: 2026/05/20 11:00:48 by fabde-ar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_hexlen(unsigned int n)
+static int	ft_hexlen(unsigned long n)
 {
 	int	len;
 
@@ -25,19 +25,7 @@ static int	ft_hexlen(unsigned int n)
 	return (len);
 }
 
-static char	*ft_zero(void)
-{
-	char	*hex_zero;
-
-	hex_zero = malloc(2 * sizeof(char));
-	if (!hex_zero)
-		return (NULL);
-	hex_zero[0] = '0';
-	hex_zero[1] = '\0';
-	return (hex_zero);
-}
-
-static char	*ft_processor(unsigned int n, char spfr)
+static char	*ft_processor(unsigned long n)
 {
 	char	*hex;
 	char	mod;
@@ -55,10 +43,8 @@ static char	*ft_processor(unsigned int n, char spfr)
 		mod = n % 16;
 		if (mod < 10)
 			digit = '0' + mod;
-		else if (spfr == 'x')
+		else
 			digit = 'a' + (mod - 10);
-		else if (spfr == 'X')
-			digit = 'A' + (mod - 10);
 		n = n / 16;
 		hex[i--] = digit;
 	}
@@ -66,18 +52,27 @@ static char	*ft_processor(unsigned int n, char spfr)
 	return (hex);
 }
 
-int	ft_puthex_pf(unsigned int n, char spfr)
+int	ft_putptr_pf(void *ptr)
 {
-	char	*puthex;
-	int		size;
+	unsigned long	address;
+	char			*hex;
+	char			*str_hex;
+	int				size;
 
-	if (n == 0)
-		puthex = ft_zero();
-	else
-		puthex = ft_processor(n, spfr);
-	if (!puthex)
+	address = (unsigned long)ptr;
+	if (address == 0)
+		return (write(1, "(nil)", 5));
+	hex = ft_processor(address);
+	if (!hex)
 		return (-1);
-	size = write(1, puthex, ft_strlen(puthex));
-	free(puthex);
+	str_hex = ft_strjoin("0x", hex);
+	if (!str_hex)
+	{
+		free(hex);
+		return (-1);
+	}
+	size = write(1, str_hex, ft_strlen(str_hex));
+	free(str_hex);
+	free(hex);
 	return (size);
 }
