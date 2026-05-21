@@ -18,7 +18,6 @@ OBJS = $(SRCS:.c=.o)
 LIBFT_DIR = Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
