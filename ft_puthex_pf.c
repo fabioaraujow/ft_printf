@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthex_pf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fabde-ar <fabde-ar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fabde-ar <fabde-ar@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 09:34:14 by fabde-ar          #+#    #+#             */
 /*   Updated: 2026/05/20 09:34:15 by fabde-ar         ###   ########.fr       */
